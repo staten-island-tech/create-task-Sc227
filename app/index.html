@@ -9,17 +9,21 @@
   <body>
     <h1 class ="head">Postcard Customizer</h1>
     <form action ="" class ="form">
-    <div id ="container-box">
-    <div class="card1">
-        <label>Country:</label>
-        <input type="text" id = "country"/>
-      </div>
-      <div class="card1">
-        <label>Image:</label>
-        <input type="URL" id ="pic"/>
-      </div>
-      <button type ="submit">Submit</button>
-    </div>
+      <div id="container-box">
+        <div class="card1">
+        <label>Message:</label>
+        <textarea id="message" rows="4" cols="30" placeholder="Write your message here..."></textarea>
+        </div>
+        <div class="card1">
+        <label>Recipient:</label>
+        <input type="text" id="recipient" placeholder="Name, Address" />
+        </div>
+        <div class="card1">
+        <label>Stamp URL:</label>
+        <input type="URL" id="stampURL" placeholder="Enter stamp image URL" />
+        </div>
+        <button type="submit">Submit</button>
+        </div>
     </form>
     <script type="module" src="main.js"></script>
   </body>

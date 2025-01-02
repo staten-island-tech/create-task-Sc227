@@ -1,5 +1,19 @@
 import "./style.css";
 
+var myHeaders = new Headers();
+myHeaders.append("Authorization", "apikey");
+
+var requestOptions = {
+  method: "GET",
+  headers: myHeaders,
+  redirect: "follow",
+};
+
+fetch("https://www.owlbot.ai/api/endpoint", requestOptions)
+  .then((response) => response.text())
+  .then((result) => console.log(result))
+  .catch((error) => console.log("error", error));
+
 document.addEventListener("DOMContentLoaded", () => {
   const messageInput = document.getElementById("message");
   const recipientInput = document.getElementById("recipient");
@@ -11,13 +25,11 @@ document.addEventListener("DOMContentLoaded", () => {
   document.body.appendChild(canvas);
   const ctx = canvas.getContext("2d");
 
-  // Set up default postcard design
   function drawDefaultPostcard() {
     // Background color
     ctx.fillStyle = "#FFD580";
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-    // Divider line
     ctx.beginPath();
     ctx.moveTo(canvas.width / 2, 0);
     ctx.lineTo(canvas.width / 2, canvas.height);
@@ -25,18 +37,15 @@ document.addEventListener("DOMContentLoaded", () => {
     ctx.lineWidth = 2;
     ctx.stroke();
 
-    // Placeholder stamp area
     ctx.strokeRect(canvas.width - 120, 20, 100, 60);
     ctx.fillText("Stamp", canvas.width - 70, 55);
   }
 
   drawDefaultPostcard();
 
-  // Redraw the canvas with the user input
   function redrawCanvas() {
     drawDefaultPostcard();
 
-    // Add user message
     ctx.font = "16px Arial";
     ctx.fillStyle = "#000";
     ctx.textAlign = "left";
@@ -45,14 +54,12 @@ document.addEventListener("DOMContentLoaded", () => {
       ctx.fillText(line, 20, 40 + index * 20);
     });
 
-    // Add recipient details
     ctx.textAlign = "left";
     const recipientLines = recipientInput.value.split("\n");
     recipientLines.forEach((line, index) => {
       ctx.fillText(line, canvas.width / 2 + 20, 40 + index * 20);
     });
 
-    // Add custom stamp
     const stampURL = stampInput.value;
     if (stampURL) {
       const stampImage = new Image();
@@ -64,7 +71,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  // Handle form submission
   document.querySelector("form").addEventListener("submit", (event) => {
     event.preventDefault();
     redrawCanvas();

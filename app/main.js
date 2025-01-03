@@ -33,7 +33,6 @@ document.addEventListener("DOMContentLoaded", () => {
     ctx.beginPath();
     ctx.moveTo(canvas.width / 2, 0);
     ctx.lineTo(canvas.width / 2, canvas.height);
-    ctx.strokeStyle = "#000";
     ctx.lineWidth = 2;
     ctx.stroke();
 

@@ -19,7 +19,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const recipientInput = document.getElementById("recipient");
   const stampInput = document.getElementById("stampURL");
   const canvas = document.createElement("canvas");
-  canvas.id = "postcardCanvas";
   canvas.width = 600;
   canvas.height = 400;
   document.body.appendChild(canvas);
@@ -62,7 +61,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const stampURL = stampInput.value;
     if (stampURL) {
       const stampImage = new Image();
-      stampImage.crossOrigin = "anonymous";
       stampImage.src = stampURL;
       stampImage.onload = () => {
         ctx.drawImage(stampImage, canvas.width - 120, 20, 100, 60);
@@ -75,3 +73,5 @@ document.addEventListener("DOMContentLoaded", () => {
     redrawCanvas();
   });
 });
+
+//pexels api

@@ -1,18 +1,11 @@
 import "./style.css";
 
-var myHeaders = new Headers();
-myHeaders.append("Authorization", "apikey");
+import { createClient } from "pexels";
 
-var requestOptions = {
-  method: "GET",
-  headers: myHeaders,
-  redirect: "follow",
-};
-
-fetch("https://www.owlbot.ai/api/endpoint", requestOptions)
-  .then((response) => response.text())
-  .then((result) => console.log(result))
-  .catch((error) => console.log("error", error));
+const client = createClient(
+  "yKId6ERkQefpAsFKWM1P73jEyYOATOQna8mXRTqtUFDZU1fP4hFeOaHV"
+);
+client.photos.show({ id: 2014422 }).then(photo => {...});
 
 document.addEventListener("DOMContentLoaded", () => {
   const messageInput = document.getElementById("message");
@@ -58,7 +51,7 @@ document.addEventListener("DOMContentLoaded", () => {
       ctx.fillText(line, canvas.width / 2 + 20, 40 + index * 20);
     });
 
-    const stampURL = stampInput.value;
+    const stampURL = `https://api.pexels.com/v1/photos/:${stampInput.value}`;
     if (stampURL) {
       const stampImage = new Image();
       stampImage.src = stampURL;

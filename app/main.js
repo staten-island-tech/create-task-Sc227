@@ -2,10 +2,31 @@ import "./style.css";
 
 import { createClient } from "pexels";
 
-const client = createClient(
+const apiKey = createClient(
   "yKId6ERkQefpAsFKWM1P73jEyYOATOQna8mXRTqtUFDZU1fP4hFeOaHV"
 );
-client.photos.show({ id: 2014422 }).then(photo => {...});
+const url = "https://api.pexels.com/v1/curated?per_page=1&page=1";
+
+fetch(url, {
+  method: "GET",
+  headers: {
+    Authorization: apiKey,
+  },
+});
+try {
+  const response = await fetch(apiEntry);
+  console.log(response.status);
+  if (response.status != 200) {
+    throw new Error(response);
+  } else {
+    const data = await response.json();
+    console.log(data);
+    return data;
+  }
+} catch (error) {
+  console.log(error);
+  alert("error");
+}
 
 document.addEventListener("DOMContentLoaded", () => {
   const messageInput = document.getElementById("message");

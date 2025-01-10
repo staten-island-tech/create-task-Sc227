@@ -12,21 +12,10 @@ fetch(url, {
   headers: {
     Authorization: apiKey,
   },
-});
-try {
-  const response = await fetch(apiEntry);
-  console.log(response.status);
-  if (response.status != 200) {
-    throw new Error(response);
-  } else {
-    const data = await response.json();
-    console.log(data);
-    return data;
-  }
-} catch (error) {
-  console.log(error);
-  alert("error");
-}
+})
+  .then((response) => response.json())
+  .then((result) => console.log(result))
+  .catch((err) => console.log(err));
 
 document.addEventListener("DOMContentLoaded", () => {
   const messageInput = document.getElementById("message");
@@ -88,4 +77,15 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-//pexels api
+//def get_image():
+//try:
+//URL="https://api.pexels.com/v1/search?query=dogs&orientation=landscape&per_page=50"
+//headers = {
+//'Authorization': '[KEY HERE]'
+//}
+//rnd = random.randint(0, 49)
+//response = requests.get(URL, headers=headers)
+//imageurl = response.json()["photos"][rnd]["src"]["large"]
+//return imageurl
+//except:
+//return "https://images.pexels.com/photos/1108099/pexels-photo-1108099.jpeg"

@@ -1,9 +1,4 @@
 import "../css/style.css";
-import { createClient } from "pexels";
-
-const client = createClient(
-  "yKId6ERkQefpAsFKWM1P73jEyYOATOQna8mXRTqtUFDZU1fP4hFeOaHV"
-);
 
 document.addEventListener("DOMContentLoaded", () => {
   const messageInput = document.getElementById("message");
@@ -28,11 +23,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
   async function fetchStampImage(id) {
     try {
-      const response = await client.photos.show({ id });
-      return response.src.medium;
+      const response = await fetch(`https://api.pexels.com/v1/photos/${id}`, {
+        headers: {
+          Authorization:
+            "yKId6ERkQefpAsFKWM1P73jEyYOATOQna8mXRTqtUFDZU1fP4hFeOaHV",
+        },
+      });
+      const data = await response.json();
+      return data.src.medium;
     } catch (error) {
       console.log(error);
-      alert("error");
+      alert("Error fetching stamp image");
     }
   }
 

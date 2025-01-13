@@ -4,24 +4,18 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Postcard Customizer</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="./css/style.css">
   </head>
   <body>
     <h1 class ="head">Postcard Customizer</h1>
     <form action ="" class ="form">
       <div id="container-box">
-        <label>Message:</label>
         <textarea id="message" rows="4" cols="30" placeholder="Write your message here..."></textarea>
-        <label>Recipient:</label>
-        <input type="text" id="recipient" placeholder="Name, Address" />
-        <label>Stamp URL:</label>
-        <input type="text" id="stamp" placeholder="Enter stamp image..." />
+        <textarea id="recipient" rows="4" cols="30" placeholder="Full Name, Address, Country, Phone"></textarea>
+        <textarea id="stamp" cols="30" placeholder="Enter a random number XXXXXXX..."></textarea>
         <button type="submit">Submit</button>
       </div>
     </form>
-    <footer class ="footer">
-        <a href="https://www.pexels.com">Photos provided by Pexels</a>
-    </footer>
-    <script type="module" src="main.js"></script>
+    <script type="module" src="./js/main.js"></script>
   </body>
 </html>

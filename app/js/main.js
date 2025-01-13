@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const messageInput = document.getElementById("message");
   const recipientInput = document.getElementById("recipient");
   const stampInput = document.getElementById("stamp");
-  const canvas = document.createElement("canvas");
+  const canvas = document.getElementById("canvas");
   canvas.width = 600;
   canvas.height = 400;
   document.body.appendChild(canvas);
@@ -52,7 +52,6 @@ document.addEventListener("DOMContentLoaded", () => {
         line = testLine;
       }
     }
-
     lines.push(line);
 
     for (let j = 0; j < lines.length; j++) {

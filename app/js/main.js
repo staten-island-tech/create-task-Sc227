@@ -30,7 +30,7 @@ document.addEventListener("DOMContentLoaded", () => {
         },
       });
       const data = await response.json();
-      return data.src.medium;
+      stampImages.push(data.src.medium);
     } catch (error) {
       console.log(error);
       alert("Error fetching stamp image");
@@ -92,16 +92,12 @@ document.addEventListener("DOMContentLoaded", () => {
       20
     );
 
-    const stampId = stampInput.value;
-    if (stampId) {
-      const stampImageUrl = await fetchStampImage(stampId);
-      if (stampImageUrl) {
-        const stampImage = new Image();
-        stampImage.src = stampImageUrl;
-        stampImage.onload = () => {
-          ctx.drawImage(stampImage, canvas.width - 120, 20, 100, 60);
-        };
-      }
+    for (let i = 0; i < stampImages.length; i++) {
+      const stampImage = new Image();
+      stampImage.src = stampImages[i];
+      stampImage.onload = () => {
+        ctx.drawImage(stampImage, 50 * i + 20, 20, 100, 60);
+      };
     }
   }
 

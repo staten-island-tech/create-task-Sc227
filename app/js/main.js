@@ -5,8 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const recipientInput = document.getElementById("recipient");
   const stampInput = document.getElementById("stamp");
   const canvas = document.getElementById("canvas");
-  canvas.width = 600;
-  canvas.height = 400;
+
   document.body.appendChild(canvas);
   const ctx = canvas.getContext("2d");
   const stampImages = [];

@@ -9,6 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
   canvas.height = 400;
   document.body.appendChild(canvas);
   const ctx = canvas.getContext("2d");
+  const stampImages = [];
 
   function defaultPostcard() {
     ctx.fillStyle = "#FFD580";
@@ -31,6 +32,7 @@ document.addEventListener("DOMContentLoaded", () => {
       });
       const data = await response.json();
       stampImages.push(data.src.medium);
+      console.log(stampImages);
     } catch (error) {
       console.log(error);
       alert("Error fetching stamp image");
@@ -96,13 +98,18 @@ document.addEventListener("DOMContentLoaded", () => {
       const stampImage = new Image();
       stampImage.src = stampImages[i];
       stampImage.onload = () => {
-        ctx.drawImage(stampImage, 50 * i + 20, 20, 100, 60);
+        ctx.drawImage(stampImage, canvas.width - 120, 20, 100, 60);
       };
     }
   }
 
   document.querySelector("form").addEventListener("submit", async (event) => {
     event.preventDefault();
+    const stampId = stampInput.value;
+    if (stampId) {
+      await fetchStampImage(stampId);
+    }
+
     await redrawCanvas();
   });
 });

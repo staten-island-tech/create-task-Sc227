@@ -5,7 +5,10 @@ document.addEventListener("DOMContentLoaded", () => {
   const recipientInput = document.getElementById("recipient");
   const stampInput = document.getElementById("stamp");
   const canvas = document.getElementById("canvas");
-
+  const viewStampsButton = document.getElementById("view-stamps");
+  const stampGallery = document.getElementById("stamp-gallery");
+  canvas.width = 600;
+  canvas.height = 400;
   document.body.appendChild(canvas);
   const ctx = canvas.getContext("2d");
   const stampImages = [];
@@ -69,25 +72,16 @@ document.addEventListener("DOMContentLoaded", () => {
     ctx.textAlign = "left";
 
     const dividerPosition = canvas.width / 2;
-    const leftSidePadding = 40;
-    const rightSidePadding = 40;
-    const messageMaxWidth = dividerPosition - leftSidePadding;
-    const recipientMaxWidth = canvas.width - dividerPosition - rightSidePadding;
+    const messageMaxWidth = dividerPosition - 40;
+    const recipientMaxWidth = canvas.width - dividerPosition - 40;
     console.log({ messageMaxWidth, recipientMaxWidth, dividerPosition });
 
-    fitTextToCanvas(
-      ctx,
-      messageInput.value,
-      leftSidePadding,
-      40,
-      messageMaxWidth,
-      20
-    );
+    fitTextToCanvas(ctx, messageInput.value, 40, 40, messageMaxWidth, 20);
 
     fitTextToCanvas(
       ctx,
       recipientInput.value,
-      dividerPosition + rightSidePadding,
+      dividerPosition + 40,
       40,
       recipientMaxWidth,
       20
@@ -110,5 +104,16 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     await redrawCanvas();
+  });
+
+  viewStampsButton.addEventListener("click", () => {
+    stampGallery.innerHTML = "";
+
+    stampImages.forEach((url) => {
+      const img = document.createElement("img");
+      img.src = url;
+      img.style.width = "100px";
+      stampGallery.appendChild(img);
+    });
   });
 });

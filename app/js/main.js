@@ -33,7 +33,10 @@ document.addEventListener("DOMContentLoaded", () => {
         },
       });
       const data = await response.json();
-      stampImages.push(data.src.medium);
+      const imageUrl = data.src.medium;
+      if (!stampImages.includes(imageUrl)) {
+        stampImages.push(imageUrl);
+      }
       console.log(stampImages);
     } catch (error) {
       console.log(error);

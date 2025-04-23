@@ -1,32 +1,80 @@
-html,
-* {
-    margin: 0;
-    padding: 0;
+body {
+    font-family: "Times New Roman", serif;
+    background-color: #f7f7f7;
+    padding: 20px;
+  }
+  
+  .postcard {
+    display: flex;
+    width: 600px;
+    height: 400px;
+    background-color: #FFD580;
+    border: 2px solid #000;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  .message-section,
+  .right-section {
+    padding: 20px;
+    width: 50%;
     box-sizing: border-box;
-    font-size: 10px;
-}
-
-#container-box {
+  }
+  
+  textarea {
+    width: 100%;
+    height: 100%;
+    resize: none;
+    border: none;
+    background: transparent;
+    font-size: 16px;
+    outline: none;
+  }
+  
+  .right-section {
+    position: relative;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    row-gap: 2rem;
-}
-
-.head {
-    font-size: 4rem;
-    text-align: center;
-}
-
-#canvas {
-    display: block;
-    margin: auto;
-    border: 2px solid black;
+    justify-content: space-between;
   }
-
-#stamp-gallery {
-    margin-top: 20px;
+  
+  .stamp-box {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 100px;
+    height: 60px;
+    border: 2px solid #000;
+    background-size: cover;
+    background-position: center;
+  }
+  
+  .form-controls {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  
+  input[type="text"] {
+    padding: 8px;
+    font-size: 14px;
+  }
+  
+  button {
+    padding: 8px 12px;
+    font-size: 14px;
+    cursor: pointer;
+  }
+  
+  .stamp-gallery {
     display: flex;
     flex-wrap: wrap;
-    align-items: center;
-}
+    gap: 10px;
+  }
+  
+  .stamp-gallery img {
+    width: 100px;
+    height: auto;
+    border: 1px solid #ccc;
+  }
+  

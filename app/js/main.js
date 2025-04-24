@@ -1,12 +1,12 @@
 import "../css/style.css";
 
 document.addEventListener("DOMContentLoaded", () => {
-  const messageInput = document.getElementById("message");
-  const recipientInput = document.getElementById("recipient");
   const stampInput = document.getElementById("stamp");
   const stampBox = document.getElementById("stamp-box");
   const viewStampsButton = document.getElementById("view-stamps");
+  const placeStickersButton = document.getElementById("place-stickers");
   const stampGallery = document.getElementById("stamp-gallery");
+  const postcard = document.getElementById("postcard");
 
   const stampImages = [];
 
@@ -41,6 +41,60 @@ document.addEventListener("DOMContentLoaded", () => {
     if (stampId) {
       await fetchStampImage(stampId);
     }
+  });
+
+  const selectedDecorations = [];
+  const decorations = ["heart", "star", "flower"];
+
+  document.querySelectorAll(".sticker").forEach((sticker) => {
+    sticker.addEventListener("click", () => {
+      const type = sticker.dataset.type;
+      sticker.classList.toggle("selected");
+
+      if (selectedDecorations.includes(type)) {
+        const index = selectedDecorations.indexOf(type);
+        selectedDecorations.splice(index, 1);
+      } else {
+        selectedDecorations.push(type);
+      }
+
+      console.log(selectedDecorations);
+    });
+  });
+
+  placeStickersButton.addEventListener("click", () => {
+    postcard.querySelectorAll(".deco").forEach((el) => el.remove());
+
+    const placedDecorations = [];
+
+    for (let i = 0; i < selectedDecorations.length; i++) {
+      const deco = selectedDecorations[i];
+
+      if (decorations.includes(deco)) {
+        placedDecorations.push({
+          type: deco,
+          x: Math.random() * 200,
+          y: Math.random() * 150,
+        });
+      }
+    }
+
+    let index = 0;
+    function placeNext() {
+      if (index >= placedDecorations.length) return;
+
+      const deco = placedDecorations[index];
+      const el = document.createElement("div");
+      el.className = "deco " + deco.type;
+      el.style.left = deco.x + "px";
+      el.style.top = deco.y + "px";
+      postcard.appendChild(el);
+
+      index++;
+      setTimeout(placeNext, 300);
+    }
+
+    placeNext();
   });
 
   viewStampsButton.addEventListener("click", () => {

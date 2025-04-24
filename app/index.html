@@ -6,28 +6,36 @@
     <title>Postcard Customizer</title>
     <link rel="stylesheet" href="./css/style.css">
   </head>
-  <body>
+  <html>
+    <div class="container">
     <h1 class ="head">Postcard Customizer</h1>
     <form id="postcard-form">
-      <div class="postcard">
+      <div id="sticker-options">
+        <img src="heart.png" alt="heart" data-type="heart" class="sticker">
+        <img src="star.png" alt="star" data-type="star" class="sticker">
+        <img src="flower.png" alt="flower" data-type="flower" class="sticker">
+      </div>
+      
+      <div class="postcard" id="postcard">
         <div class="message-section">
           <textarea id="message" placeholder="Write your message..."></textarea>
         </div>
         <div class="right-section">
           <div class="stamp-box" id="stamp-box"></div>
-          <textarea id="recipient" placeholder="Recipient's address..."></textarea>
+          <textarea id="recipient" placeholder="Recipient..."></textarea>
         </div>
       </div>
   
       <div class="form-controls">
         <input type="text" id="stamp" placeholder="Enter stamp ID..." />
         <button type="submit">Add Stamp</button>
-        <button type="button" id="view-stamps">View Stamps</button>
+        <button type="click" id="view-stamps">View Stamps</button>
+        <button type="click" id="place-stickers">Place Stickers</button>
       </div>
-      <button type="submit" id="submit-button">Send Postcard</button>
     </form>
         <div id="stamp-gallery" class="stamp-gallery"></div>
     </div>
+  </div>
     <script type="module" src="./js/main.js"></script>
   </body>
 </html>

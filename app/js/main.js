@@ -73,8 +73,8 @@ document.addEventListener("DOMContentLoaded", () => {
       if (stickers.includes(deco)) {
         placedStickers.push({
           type: deco,
-          x: Math.random() * 200,
-          y: Math.random() * 150,
+          x: Math.random() * 400,
+          y: Math.random() * 400,
         });
       }
     }

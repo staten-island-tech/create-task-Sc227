@@ -43,35 +43,35 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  const selectedDecorations = [];
-  const decorations = ["heart", "star", "flower"];
+  const selectedStickers = [];
+  const stickers = ["heart", "star", "flower"];
 
   document.querySelectorAll(".sticker").forEach((sticker) => {
     sticker.addEventListener("click", () => {
       const type = sticker.dataset.type;
       sticker.classList.toggle("selected");
 
-      if (selectedDecorations.includes(type)) {
-        const index = selectedDecorations.indexOf(type);
-        selectedDecorations.splice(index, 1);
+      if (selectedStickers.includes(type)) {
+        const index = selectedStickers.indexOf(type);
+        selectedStickers.splice(index, 1);
       } else {
-        selectedDecorations.push(type);
+        selectedStickers.push(type);
       }
 
-      console.log(selectedDecorations);
+      console.log(selectedStickers);
     });
   });
 
-  placeStickersButton.addEventListener("click", () => {
+  function placeStickers(selectedStickers) {
     postcard.querySelectorAll(".deco").forEach((el) => el.remove());
 
-    const placedDecorations = [];
+    const placedStickers = [];
 
-    for (let i = 0; i < selectedDecorations.length; i++) {
-      const deco = selectedDecorations[i];
+    for (let i = 0; i < selectedStickers.length; i++) {
+      const deco = selectedStickers[i];
 
-      if (decorations.includes(deco)) {
-        placedDecorations.push({
+      if (stickers.includes(deco)) {
+        placedStickers.push({
           type: deco,
           x: Math.random() * 200,
           y: Math.random() * 150,
@@ -81,9 +81,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
     let index = 0;
     function placeNext() {
-      if (index >= placedDecorations.length) return;
+      if (index >= placedStickers.length) return;
 
-      const deco = placedDecorations[index];
+      const deco = placedStickers[index];
       const el = document.createElement("div");
       el.className = "deco " + deco.type;
       el.style.left = deco.x + "px";
@@ -95,6 +95,10 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     placeNext();
+  }
+
+  placeStickersButton.addEventListener("click", () => {
+    placeStickers(selectedStickers);
   });
 
   viewStampsButton.addEventListener("click", () => {
